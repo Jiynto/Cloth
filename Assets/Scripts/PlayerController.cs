@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
 
+    private float horizontalMove = 0;
+
+    private bool jump = false;
+
     #region Input Actions
     [SerializeField]
     private PlayerInput playerInput;
@@ -45,22 +49,42 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += jumpHandler;
         //slideAction.performed += slideHandler;
         dashAction.performed += dashHandler;
-        moveAction.started += Move;
+        moveAction.started += HorizontalInput;
+        moveAction.canceled += HorizontalEnd;
 
     }
 
-
+    private void FixedUpdate()
+    {
+        Move();
+        if(jump)
+        {
+            rb.AddForce(rb.transform.up * 100);
+            jump = false;
+        }
+    }
 
     private void Jump()
     {
         Debug.Log("Jump");
+        jump = true;
     }
 
-    private void Move(InputAction.CallbackContext context)
+
+    private void HorizontalInput(InputAction.CallbackContext context)
     {
         Debug.Log(context.ReadValue<float>());
-        float newSpeed = context.ReadValue<float>() * moveSpeed;
-        rb.velocity = new Vector2(newSpeed, rb.velocity.y);
+        horizontalMove = context.ReadValue<float>() * moveSpeed;
+    }
+
+    private void HorizontalEnd(InputAction.CallbackContext context)
+    {
+        horizontalMove = 0;
+    }
+
+    private void Move()
+    {
+        rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
     }
 
     private void Dash()
