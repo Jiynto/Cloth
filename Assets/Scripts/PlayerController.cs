@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
 
+    private float direction = 1;
 
-    private float horizontalMove = 0;
+    private bool move = false;
 
     private bool jump = false;
+
+    private float horizontalVelocity = 0;
 
     #region Input Actions
     [SerializeField]
@@ -54,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        SetMoveValues();
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -74,17 +82,31 @@ public class PlayerController : MonoBehaviour
     private void HorizontalInput(InputAction.CallbackContext context)
     {
         Debug.Log(context.ReadValue<float>());
-        horizontalMove = context.ReadValue<float>() * moveSpeed;
+        direction = context.ReadValue<float>();
+        move = true;
     }
 
     private void HorizontalEnd(InputAction.CallbackContext context)
     {
-        horizontalMove = 0;
+        move = false;
+    }
+
+    private void SetMoveValues()
+    {
+
+        if(move)
+        {
+            horizontalVelocity = direction * moveSpeed;
+        }
+        else
+        {
+            horizontalVelocity = 0;
+        }
     }
 
     private void Move()
     {
-        rb.velocity = new Vector2(horizontalMove, rb.velocity.y);
+        rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
     }
 
     private void Dash()
