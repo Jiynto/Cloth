@@ -12,11 +12,16 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
 
     [SerializeField]
+    private float dashModifier;
+
+    [SerializeField]
     private Rigidbody2D rb;
 
     private float direction = 1;
 
     private bool move = false;
+
+    private bool dash = false;
 
     private bool jump = false;
 
@@ -93,25 +98,39 @@ public class PlayerController : MonoBehaviour
 
     private void SetMoveValues()
     {
-
-        if(move)
+        if(!dash)
         {
-            horizontalVelocity = direction * moveSpeed;
+            if (move)
+            {
+                horizontalVelocity = direction * moveSpeed;
+            }
+            else
+            {
+                horizontalVelocity = 0;
+            }
         }
-        else
-        {
-            horizontalVelocity = 0;
-        }
+       
     }
 
     private void Move()
     {
-        rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
+        if (!dash)
+        {
+            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
+        }
+        else
+        {
+            rb.AddForce(rb.transform.right * direction * dashModifier);
+            dash = false;
+        }
+
     }
 
-    private void Dash()
+
+        private void Dash()
     {
         Debug.Log("Dash");
+        dash = true;
     }
 
     //private void Slide()

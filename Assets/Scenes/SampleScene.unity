@@ -1356,6 +1356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  dashModifier: 50
   rb: {fileID: 936113145}
   playerInput: {fileID: 936113150}
 --- !u!114 &936113150
