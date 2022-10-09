@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField]
+    Animator animator;
 
     [SerializeField]
     private float moveSpeed;
@@ -89,11 +91,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log(context.ReadValue<float>());
         direction = context.ReadValue<float>();
         move = true;
+        animator.SetBool("Run", true);
     }
 
     private void HorizontalEnd(InputAction.CallbackContext context)
     {
         move = false;
+        animator.SetBool("Run", false);
     }
 
     private void SetMoveValues()
@@ -140,5 +144,10 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
 
+    }
+
+    private void FinishDash()
+    {
+        dash = false;
     }
 }

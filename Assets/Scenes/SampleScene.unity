@@ -471,6 +471,8 @@ GameObject:
   - component: {fileID: 715492808}
   - component: {fileID: 715492807}
   - component: {fileID: 715492809}
+  - component: {fileID: 715492811}
+  - component: {fileID: 715492810}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -2426,6 +2428,63 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!66 &715492810
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715492805}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 715492809}
+    m_ColliderPaths:
+    - - X: 235000000
+        Y: -40000000
+      - X: -185000000
+        Y: -40000000
+      - X: -185000000
+        Y: -50000000
+      - X: 235000000
+        Y: -50000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 23.499971, y: -5}
+      - {x: 23.499971, y: -4}
+      - {x: -18.5, y: -4.000029}
+      - {x: -18.499971, y: -5}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &715492811
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715492805}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &936113144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2440,6 +2499,7 @@ GameObject:
   - component: {fileID: 936113153}
   - component: {fileID: 936113152}
   - component: {fileID: 936113151}
+  - component: {fileID: 936113154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2627,6 +2687,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.32}
   m_EdgeRadius: 0
+--- !u!95 &936113154
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936113144}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f26a3708816d8b42b32652f23d7a886, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &948940303
 GameObject:
   m_ObjectHideFlags: 0
