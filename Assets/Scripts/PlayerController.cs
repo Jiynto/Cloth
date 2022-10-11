@@ -131,16 +131,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
-        private void Dash()
+    private void Dash()
     {
         Debug.Log("Dash");
         dash = true;
+        animator.SetBool("Dash", true);
     }
 
     //private void Slide()
     //{
     //    Debug.Log("Slide");
     //}
+
     private void Attack()
     {
 
@@ -149,5 +151,6 @@ public class PlayerController : MonoBehaviour
     private void FinishDash()
     {
         dash = false;
+        animator.SetBool("Dash", false);
     }
 }
