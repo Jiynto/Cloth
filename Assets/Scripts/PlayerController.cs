@@ -16,12 +16,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float dashModifier;
 
+    private float moveModifier;
+
     [SerializeField]
     private Rigidbody2D rb;
 
     private float direction = 1;
 
-    private bool move = false;
+    private bool locked = false;
 
     private bool dash = false;
 
@@ -64,20 +66,40 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        moveModifier = 0;
+    }
+
     private void Update()
     {
-        SetMoveValues();
+
     }
 
     private void FixedUpdate()
     {
-        Move();
-        if(jump)
+        if(!locked)
         {
-            rb.AddForce(rb.transform.up * 100);
-            jump = false;
+            rb.velocity = Move();
+            if (jump)
+            {
+                rb.AddForce(rb.transform.up * 100);
+                jump = false;
+            }
         }
+
     }
+
+    private Vector2 Move()
+    {
+        if(dash)
+        {
+            locked = true;
+            return new Vector2(direction * dashModifier, rb.velocity.y);
+        }
+        return new Vector2(direction * moveModifier, rb.velocity.y);
+    }
+
 
     private void Jump()
     {
@@ -90,67 +112,39 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log(context.ReadValue<float>());
         direction = context.ReadValue<float>();
-        move = true;
-        animator.SetBool("Run", true);
+        moveModifier = moveSpeed;
     }
 
     private void HorizontalEnd(InputAction.CallbackContext context)
     {
-        move = false;
-        animator.SetBool("Run", false);
+        moveModifier = 0;
     }
-
-    private void SetMoveValues()
-    {
-        if(!dash)
-        {
-            if (move)
-            {
-                horizontalVelocity = direction * moveSpeed;
-            }
-            else
-            {
-                horizontalVelocity = 0;
-            }
-        }
-       
-    }
-
-    private void Move()
-    {
-        if (!dash)
-        {
-            rb.velocity = new Vector2(horizontalVelocity, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = rb.transform.right * direction * dashModifier;
-            dash = false;
-        }
-
-    }
-
 
     private void Dash()
     {
         Debug.Log("Dash");
         dash = true;
-        animator.SetBool("Dash", true);
+    }
+
+    private void FinishDash()
+    {
+        dash = false;
+        locked = false;
     }
 
     //private void Slide()
     //{
     //    Debug.Log("Slide");
     //}
+    private void Animate()
+    {
+
+    }
 
     private void Attack()
     {
 
     }
 
-    private void FinishDash()
-    {
-        dash = false;
-        animator.SetBool("Dash", false);
-    }
+
 }
