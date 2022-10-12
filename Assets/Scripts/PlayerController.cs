@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.AddForce(rb.transform.right * direction * dashModifier);
+            rb.velocity = rb.transform.right * direction * dashModifier;
             dash = false;
         }
 

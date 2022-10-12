@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 936113154}
   moveSpeed: 10
-  dashModifier: 50
+  dashModifier: 100
   rb: {fileID: 936113152}
   playerInput: {fileID: 936113150}
 --- !u!114 &936113150
