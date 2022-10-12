@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private bool jump = false;
 
-    private float horizontalVelocity = 0;
+    private bool move = false;
 
     #region Input Actions
     [SerializeField]
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        Animate();
 
     }
 
@@ -113,11 +114,13 @@ public class PlayerController : MonoBehaviour
         Debug.Log(context.ReadValue<float>());
         direction = context.ReadValue<float>();
         moveModifier = moveSpeed;
+        move = true;
     }
 
     private void HorizontalEnd(InputAction.CallbackContext context)
     {
         moveModifier = 0;
+        move = false;
     }
 
     private void Dash()
@@ -128,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     private void FinishDash()
     {
+        animator.SetBool("Dash", false);
         dash = false;
         locked = false;
     }
@@ -136,9 +140,24 @@ public class PlayerController : MonoBehaviour
     //{
     //    Debug.Log("Slide");
     //}
+
     private void Animate()
     {
+        if (dash)
+        {
+            animator.SetBool("Dash", true);
+            animator.SetBool("Run", false);
+            return;
+        }
 
+        if(move)
+        {
+            animator.SetBool("Run", true);
+            return;
+        }
+
+        animator.SetBool("Run", false);
+        return;
     }
 
     private void Attack()
