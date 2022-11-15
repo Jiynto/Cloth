@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 715492809}
   - component: {fileID: 715492811}
   - component: {fileID: 715492810}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2500,7 +2500,8 @@ GameObject:
   - component: {fileID: 936113152}
   - component: {fileID: 936113151}
   - component: {fileID: 936113154}
-  m_Layer: 0
+  - component: {fileID: 936113155}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2534,10 +2535,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56a7791810c010429338532a951b3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathFlag:
+    m_PersistentCalls:
+      m_Calls: []
   animator: {fileID: 936113154}
-  moveSpeed: 10
-  dashModifier: 20
-  rb: {fileID: 936113152}
+  <Health>k__BackingField: 1
+  <Damage>k__BackingField: 1
   playerInput: {fileID: 936113150}
 --- !u!114 &936113150
 MonoBehaviour:
@@ -2708,6 +2711,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &936113155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936113144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1897e3af83416cd46bd706d968e87eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 936113152}
+  moveSpeed: 3
+  jumpForce: 130
 --- !u!1 &948940303
 GameObject:
   m_ObjectHideFlags: 0
