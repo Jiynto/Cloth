@@ -60,7 +60,7 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
 
     private void Start()
     {
-        movement = gameObject.GetComponent<Movement>();
+        movement = gameObject.GetComponent<IMoveable>();
     }
 
 

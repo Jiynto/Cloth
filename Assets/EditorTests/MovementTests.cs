@@ -8,18 +8,14 @@ public class MovementTests
 {
     // A Test behaves as an ordinary method
     [Test]
-    public void MovementTestsSimplePasses()
+    public void MoveTest()
     {
-        // Use the Assert class to test conditions
+        Movement movement;
+        Rigidbody2D rb;
+        
+        
+
     }
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator MovementTestsWithEnumeratorPasses()
-    {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-        yield return null;
-    }
+
 }
