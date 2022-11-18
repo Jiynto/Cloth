@@ -9,7 +9,7 @@ public class EnemyController : CharacterBase, IHealth, IAnimated
 
 
     [SerializeField]
-    private IMoveable movement;
+    private IMovable2D movement;
 
 
     [SerializeField]

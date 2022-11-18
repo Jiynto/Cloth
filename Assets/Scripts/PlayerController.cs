@@ -17,7 +17,7 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
     public int Health { get; set; }
 
     [SerializeField]
-    private IMoveable movement;
+    private IMovable2D movement;
 
     [field: SerializeField]
     private int Damage { get; set; }
@@ -60,7 +60,7 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
 
     private void Start()
     {
-        movement = gameObject.GetComponent<IMoveable>();
+        movement = gameObject.GetComponent<IMovable2D>();
     }
 
 

@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Movement : MonoBehaviour, IMoveable
+public class Movement : MonoBehaviour, IMovable2D
 {
-    [SerializeField]
-    private Rigidbody2D rb;
+    [field: SerializeField]
+    public Rigidbody2D rb;
 
-    [SerializeField]
-    private float moveSpeed;
+    [field: SerializeField]
+    public float moveSpeed;
 
-
-    [SerializeField]
-    private float jumpForce;
-
+    [field: SerializeField]
+    public float jumpForce;
+    
+    
     /// <summary>
     /// Makes the player move based on the current direction being faces and the movespeed value.
     /// </summary>
     public void Move(float direction)
     {
-        rb.velocity = new Vector2(direction * moveSpeed, rb.velocity.y);
+        direction = Mathf.Clamp(direction, -1, 1);
+        if (direction == 0) return;
+        rb.velocity = new Vector2(direction *moveSpeed, rb.velocity.y);
+        
     }
 
     /// <summary>
