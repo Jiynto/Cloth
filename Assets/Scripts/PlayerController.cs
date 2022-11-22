@@ -1,26 +1,15 @@
-using Mono.Cecil;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : CharacterBase, IHealth
+public class PlayerController : CharacterBase
 {
-    public UnityEvent DeathFlag;
+ 
 
     [SerializeField]
     Animator animator;
-
-    [field: SerializeField]
-    public int Health { get; set; }
-
-    [SerializeField]
+    
     private IMovable2D movement;
-
-    [field: SerializeField]
-    private int Damage { get; set; }
 
     [SerializeField]
     private PlayerInput playerInput;
@@ -29,15 +18,15 @@ public class PlayerController : CharacterBase, IHealth
 
     private InputAction moveAction;
 
-    private bool jump = false;
+    private bool jump;
 
-    private bool move = false;
+    private bool move;
 
-    private bool dash = false;
+    private bool dash;
 
     private Action<InputAction.CallbackContext> jumpHandler;
 
-    private PlayerAnimation animation;
+    private new PlayerAnimation animation;
 
     private void Awake()
     {
@@ -46,7 +35,7 @@ public class PlayerController : CharacterBase, IHealth
         moveAction = playerInput.actions["Move"];
 
         // creating a handler for the jump action.
-        jumpHandler = delegate (InputAction.CallbackContext context) { JumpTrigger(); };
+        jumpHandler = delegate { JumpTrigger(); };
 
         // assign action events to appropriate methods.
         jumpAction.performed += jumpHandler;
@@ -62,7 +51,7 @@ public class PlayerController : CharacterBase, IHealth
         // set the players starting state to grounded.
         state = CharacterState.Idle;
         movement = gameObject.GetComponent<IMovable2D>();
-        animation = new PlayerAnimation();
+        //animation = new PlayerAnimation();
 
     }
 
@@ -172,33 +161,13 @@ public class PlayerController : CharacterBase, IHealth
     }
 
 
-    /// <summary>
-    /// Kills the player and resets the game.
-    /// </summary>
-    public void Die()
-    {
-        DeathFlag.Invoke();
-    }
-
-
-    /// <summary>
-    /// damages the player by the given amount
-    /// </summary>
-    /// <param name="amount"></param>
-    public void TakeDamage(int amount)
-    {
-        Health -= amount;
-        if (Health <= 0) Die();
-    }
-
- 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // if the player hits the gound, set playerState to grounded.
         if (collision.gameObject.layer == LayerMask.NameToLayer("ground"))
         {
             state = CharacterState.Idle;
-            return;
+            //return;
         }
         /*
         if (collision.collider.gameObject.tag == "EnemyHead")
