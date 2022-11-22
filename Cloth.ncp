@@ -1,0 +1,105 @@
+<Project>
+  <Name>Cloth</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>PlayerUML</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>PlayerMovement</Name>
+        <Access>Public</Access>
+        <Location left="343" top="443" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Rigidbody2D rb</Member>
+        <Member type="Field">public float moveSpeed</Member>
+        <Member type="Field">public float jumpForce</Member>
+        <Member type="Method">public void Move(int direction)</Member>
+        <Member type="Method">public void Stop()</Member>
+        <Member type="Method">public void Jump()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IMovable2D</Name>
+        <Access>Public</Access>
+        <Location left="343" top="94" />
+        <Size width="162" height="112" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Move(int direction)</Member>
+        <Member type="Method">void Stop()</Member>
+        <Member type="Method">void Jump()</Member>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IAAnimated</Name>
+        <Access>Public</Access>
+        <Location left="837" top="83" />
+        <Size width="334" height="83" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">void Animate(Animator animator, CharacterState state)</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>PlayerAnimation</Name>
+        <Access>Public</Access>
+        <Location left="1251" top="400" />
+        <Size width="162" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">static readonly int Move</Member>
+        <Member type="Field">static readonly int Dash</Member>
+        <Member type="Field">static readonly int Jump</Member>
+        <Member type="Method">public void Animate(Animator animator, CharacterState state)</Member>
+        <Modifier>Sealed</Modifier>
+      </Entity>
+      <Entity type="Interface">
+        <Name>IHealth</Name>
+        <Access>Public</Access>
+        <Location left="619" top="83" />
+        <Size width="162" height="117" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">int Health { get; set; }</Member>
+        <Member type="Method">void TakeDamage(int amount)</Member>
+        <Member type="Method">void Die()</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>PlayerData</Name>
+        <Access>Public</Access>
+        <Location left="619" top="343" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int damage</Member>
+        <Member type="Property">public int Health { get; set; }</Member>
+        <Member type="Method">public void TakeDamage(int amount)</Member>
+        <Member type="Method">public void Die()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PlayerController</Name>
+        <Access>Public</Access>
+        <Location left="836" top="801" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PlayerBehaviour</Name>
+        <Access>Public</Access>
+        <Location left="931" top="461" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Realization" first="0" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="3" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Realization" first="5" second="4">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
