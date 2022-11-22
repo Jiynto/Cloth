@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : CharacterBase, IHealth, IAnimated
+public class EnemyController : CharacterBase, IHealth
 {
     [field: SerializeField]
     public int Health { get; set; }

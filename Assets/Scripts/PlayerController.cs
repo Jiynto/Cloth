@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerController : CharacterBase, IHealth, IAnimated
+public class PlayerController : CharacterBase, IHealth
 {
     public UnityEvent DeathFlag;
 
@@ -37,7 +37,7 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
 
     private Action<InputAction.CallbackContext> jumpHandler;
 
-
+    private PlayerAnimation animation;
 
     private void Awake()
     {
@@ -53,21 +53,25 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
         moveAction.started += HorizontalInput;
         moveAction.canceled += HorizontalEnd;
 
-        // set the players starting state to grounded.
-        state = CharacterState.Idle;
+
 
     }
 
     private void Start()
     {
+        // set the players starting state to grounded.
+        state = CharacterState.Idle;
         movement = gameObject.GetComponent<IMovable2D>();
+        animation = new PlayerAnimation();
+
     }
 
 
     private void Update()
     {
+        
         // animate the player
-        Animate(animator);
+        animation.Animate(animator, state);
     }
 
     private void FixedUpdate()
@@ -153,36 +157,7 @@ public class PlayerController : CharacterBase, IHealth, IAnimated
     //    Debug.Log("Slide");
     //}
 
-    /// <summary>
-    /// animate the player
-    /// </summary>
-    /// <param name="animator"></param>
-    public void Animate(Animator animator)
-    {
-        switch (state)
-        {
-            case CharacterState.Dashing:
-                animator.SetBool("Dash", true);
-                animator.SetBool("Run", false);
-                break;
-            // if airborne, play the jump animation and not the run animation.
-            case CharacterState.Airborne:
-                animator.SetBool("Run", false);
-                animator.SetBool("Jump", true);
-                break;
-            // if moving, play the run animation
-            case CharacterState.Moving:
-                animator.SetBool("Run", true);
-                animator.SetBool("Jump", false);
-                break;
-            // default to idle.
-            default:
-                animator.SetBool("Run", false);
-                animator.SetBool("Jump", false);
-                break;
-
-        }
-    }
+   
 
 
 
