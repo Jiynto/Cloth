@@ -2,12 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : CharacterBase
+public class PlayerController : MonoBehaviour
 {
  
 
-    [SerializeField]
-    Animator animator;
+
     
     private IMovable2D movement;
 
@@ -17,16 +16,10 @@ public class PlayerController : CharacterBase
     private InputAction jumpAction;
 
     private InputAction moveAction;
-
-    private bool jump;
-
-    private bool move;
-
-    private bool dash;
-
+    
     private Action<InputAction.CallbackContext> jumpHandler;
 
-    private new PlayerAnimation animation;
+
 
     private void Awake()
     {
@@ -48,42 +41,13 @@ public class PlayerController : CharacterBase
 
     private void Start()
     {
-        // set the players starting state to grounded.
-        state = CharacterState.Idle;
         movement = gameObject.GetComponent<IMovable2D>();
         //animation = new PlayerAnimation();
 
     }
 
 
-    private void Update()
-    {
-        
-        // animate the player
-        animation.Animate(animator, state);
-    }
-
-    private void FixedUpdate()
-    {
-        // if movement input flagged then move.
-        if (move)
-        {
-            movement.Move(direction);
-            if (state != CharacterState.Airborne)
-            {
-                state = CharacterState.Moving;
-            }
-        }
-
-        // if jump input flagged then jump.
-        if (jump)
-        {
-            movement.Jump();
-            state = CharacterState.Airborne;
-            jump = false;
-        }
-    }
-
+  
 
     /// <summary>
     /// sets a flag to jump if there is a jump input, but only if the player state is not in the air.

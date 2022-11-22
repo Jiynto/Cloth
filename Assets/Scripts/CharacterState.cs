@@ -3,5 +3,8 @@ public enum CharacterState
     Idle,
     Moving,
     Airborne,
-    Dashing
+    Dashing,
+    Jump,
+    Attacking,
+    AttackDashing
 }
